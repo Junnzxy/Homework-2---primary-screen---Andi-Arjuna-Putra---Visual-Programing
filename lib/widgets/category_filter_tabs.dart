@@ -33,7 +33,7 @@ class CategoryFilterTabs extends StatelessWidget {
               ),
               decoration: BoxDecoration(
                 color: isSelected
-                    ? Theme.of(context).primaryColor.withOpacity(0.15)
+                    ? Theme.of(context).primaryColor.withValues(alpha: 0.15)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
                 border: isSelected

@@ -47,7 +47,7 @@ class HeaderGreeting extends StatelessWidget {
                         Text(
                           'Welcome back,',
                           style: TextStyle(
-                            color: Colors.white.withOpacity(0.8),
+                            color: Colors.white.withValues(alpha: 0.8),
                             fontSize: 14,
                           ),
                         ),
@@ -102,7 +102,7 @@ class HeaderGreeting extends StatelessWidget {
                 hintStyle: const TextStyle(color: Colors.white70),
                 prefixIcon: const Icon(Icons.search, color: Colors.white70),
                 filled: true,
-                fillColor: Colors.white.withOpacity(0.2),
+                fillColor: Colors.white.withValues(alpha: 0.2),
                 contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16.0),

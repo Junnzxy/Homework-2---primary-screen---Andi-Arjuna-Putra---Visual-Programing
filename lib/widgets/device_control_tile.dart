@@ -18,12 +18,12 @@ class DeviceControlTile extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: device.isOn
-            ? primaryColor.withOpacity(0.08)
+            ? primaryColor.withValues(alpha: 0.08)
             : Colors.grey[100],
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: device.isOn
-              ? primaryColor.withOpacity(0.4)
+              ? primaryColor.withValues(alpha: 0.4)
               : Colors.grey[300]!,
           width: 1.5,
         ),
@@ -48,7 +48,7 @@ class DeviceControlTile extends StatelessWidget {
               Switch(
                 value: device.isOn,
                 onChanged: onToggle,
-                activeColor: primaryColor,
+                activeThumbColor: primaryColor,
               ),
             ],
           ),
