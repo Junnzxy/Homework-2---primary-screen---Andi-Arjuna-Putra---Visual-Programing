@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'screens/smart_home_screen.dart';
 
 void main() {
@@ -14,7 +15,11 @@ class MyApp extends StatelessWidget {
       title: 'EcoHome Smart Hub',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF287A56),
+          tertiary: const Color(0xFFD18A2D),
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF7F8F4),
         useMaterial3: true,
       ),
       home: const SmartHomeScreen(),

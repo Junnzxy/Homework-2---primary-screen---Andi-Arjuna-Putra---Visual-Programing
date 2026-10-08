@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/smart_device.dart';
 import '../widgets/header_greeting.dart';
 import '../widgets/stat_metric_card.dart';
@@ -95,8 +96,9 @@ class _SmartHomeScreenState extends State<SmartHomeScreen> {
     setState(() {
       _activeMode = mode;
       if (mode == 'Away') {
-        _devices =
-            _devices.map((device) => device.copyWith(isOn: false)).toList();
+        _devices = _devices
+            .map((device) => device.copyWith(isOn: false))
+            .toList();
       } else if (mode == 'Eco') {
         _devices = _devices.map((device) {
           if (device.powerConsumptionWatts > 500) {
@@ -133,9 +135,11 @@ class _SmartHomeScreenState extends State<SmartHomeScreen> {
   // Derived state calculations
   List<SmartDevice> get _filteredDevices {
     return _devices.where((device) {
-      final matchesCategory = _selectedRoomCategory == 'All Rooms' ||
+      final matchesCategory =
+          _selectedRoomCategory == 'All Rooms' ||
           device.room == _selectedRoomCategory;
-      final matchesSearch = _searchQuery.isEmpty ||
+      final matchesSearch =
+          _searchQuery.isEmpty ||
           device.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           device.room.toLowerCase().contains(_searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
@@ -156,13 +160,12 @@ class _SmartHomeScreenState extends State<SmartHomeScreen> {
     final filteredList = _filteredDevices;
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             HeaderGreeting(
-              userName: 'Alex Morgan',
+              userName: 'Andi Arjuna',
               activeDeviceCount: _activeCount,
               onSearchChanged: _handleSearchChange,
               onNotificationTap: _handleNotificationTap,
@@ -173,19 +176,18 @@ class _SmartHomeScreenState extends State<SmartHomeScreen> {
               child: Row(
                 children: [
                   StatMetricCard(
-                    title: 'Active Devices',
-                    value: '$_activeCount',
-                    unit: 'devices',
-                    icon: Icons.power,
-                    color: Colors.blue,
-                  ),
-                  const SizedBox(width: 12),
-                  StatMetricCard(
                     title: 'Current Power',
                     value: _totalPowerConsumptionKw.toStringAsFixed(2),
                     unit: 'kW',
                     icon: Icons.electric_bolt,
-                    color: Colors.orange,
+                    highlighted: true,
+                  ),
+                  const SizedBox(width: 12),
+                  StatMetricCard(
+                    title: 'Active Devices',
+                    value: '$_activeCount',
+                    unit: 'devices',
+                    icon: Icons.power,
                   ),
                 ],
               ),
@@ -210,16 +212,13 @@ class _SmartHomeScreenState extends State<SmartHomeScreen> {
                 children: [
                   Text(
                     'Smart Devices (${filteredList.length})',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
                     'Mode: $_activeMode',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.secondary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

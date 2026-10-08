@@ -17,14 +17,11 @@ class QuickModeSelector extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
             'Quick Modes',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         const SizedBox(height: 12),
@@ -46,15 +43,6 @@ class QuickModeSelector extends StatelessWidget {
                     onModeSelected(mode);
                   }
                 },
-                selectedColor: Theme.of(context).primaryColor,
-                labelStyle: TextStyle(
-                  color: isSelected ? Colors.white : Colors.black87,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                ),
-                backgroundColor: Colors.grey[200],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
               );
             },
           ),

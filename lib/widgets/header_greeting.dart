@@ -16,10 +16,12 @@ class HeaderGreeting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColor,
+        color: colorScheme.primary,
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(24.0),
           bottomRight: Radius.circular(24.0),
@@ -35,10 +37,16 @@ class HeaderGreeting extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(
+                    CircleAvatar(
                       radius: 24,
-                      backgroundColor: Colors.white24,
-                      child: Icon(Icons.person, color: Colors.white, size: 28),
+                      backgroundColor: colorScheme.onPrimary.withValues(
+                        alpha: 0.16,
+                      ),
+                      child: Icon(
+                        Icons.person,
+                        color: colorScheme.onPrimary,
+                        size: 28,
+                      ),
                     ),
                     const SizedBox(width: 12),
                     Column(
@@ -47,14 +55,14 @@ class HeaderGreeting extends StatelessWidget {
                         Text(
                           'Welcome back,',
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.8),
+                            color: colorScheme.onPrimary.withValues(alpha: 0.8),
                             fontSize: 14,
                           ),
                         ),
                         Text(
                           userName,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: colorScheme.onPrimary,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -65,31 +73,16 @@ class HeaderGreeting extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: onNotificationTap,
-                  icon: Stack(
-                    children: [
-                      const Icon(Icons.notifications_outlined,
-                          color: Colors.white, size: 28),
-                      if (activeDeviceCount > 0)
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            decoration: const BoxDecoration(
-                              color: Colors.amber,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                              '$activeDeviceCount',
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 10,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
+                  icon: Badge(
+                    isLabelVisible: activeDeviceCount > 0,
+                    backgroundColor: colorScheme.tertiary,
+                    textColor: colorScheme.onTertiary,
+                    label: Text('$activeDeviceCount'),
+                    child: Icon(
+                      Icons.notifications_outlined,
+                      color: colorScheme.onPrimary,
+                      size: 28,
+                    ),
                   ),
                 ),
               ],
@@ -99,17 +92,22 @@ class HeaderGreeting extends StatelessWidget {
               onChanged: onSearchChanged,
               decoration: InputDecoration(
                 hintText: 'Search devices or rooms...',
-                hintStyle: const TextStyle(color: Colors.white70),
-                prefixIcon: const Icon(Icons.search, color: Colors.white70),
+                hintStyle: TextStyle(
+                  color: colorScheme.onPrimary.withValues(alpha: 0.72),
+                ),
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: colorScheme.onPrimary.withValues(alpha: 0.72),
+                ),
                 filled: true,
-                fillColor: Colors.white.withValues(alpha: 0.2),
+                fillColor: colorScheme.onPrimary.withValues(alpha: 0.16),
                 contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16.0),
                   borderSide: BorderSide.none,
                 ),
               ),
-              style: const TextStyle(color: Colors.white),
+              style: TextStyle(color: colorScheme.onPrimary),
             ),
           ],
         ),
