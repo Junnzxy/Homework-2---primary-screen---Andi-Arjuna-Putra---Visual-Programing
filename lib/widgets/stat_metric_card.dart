@@ -25,43 +25,49 @@ class StatMetricCard extends StatelessWidget {
         ? colorScheme.onPrimary
         : colorScheme.onSecondaryContainer;
 
-    return Expanded(
-      child: Card(
-        margin: EdgeInsets.zero,
-        color: highlighted
-            ? colorScheme.primary
-            : colorScheme.secondaryContainer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
-        ),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(18.0),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(icon, color: foreground, size: highlighted ? 32 : 28),
-                const SizedBox(height: 12),
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: foreground.withValues(alpha: 0.82),
-                    fontSize: highlighted ? 14 : 12,
-                    fontWeight: FontWeight.w500,
-                  ),
+    return Card(
+      margin: EdgeInsets.zero,
+      color: highlighted
+          ? colorScheme.primary
+          : colorScheme.secondaryContainer,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(18.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: foreground, size: highlighted ? 28 : 24),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: foreground.withValues(alpha: 0.85),
+                  fontSize: highlighted ? 13 : 12,
+                  fontWeight: FontWeight.w500,
                 ),
-                const SizedBox(height: 4),
-                Row(
+              ),
+              const SizedBox(height: 4),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.baseline,
                   textBaseline: TextBaseline.alphabetic,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       value,
                       style: TextStyle(
                         color: foreground,
-                        fontSize: highlighted ? 34 : 24,
+                        fontSize: highlighted ? 30 : 22,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -70,13 +76,14 @@ class StatMetricCard extends StatelessWidget {
                       unit,
                       style: TextStyle(
                         color: foreground.withValues(alpha: 0.82),
-                        fontSize: highlighted ? 15 : 12,
+                        fontSize: highlighted ? 14 : 12,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

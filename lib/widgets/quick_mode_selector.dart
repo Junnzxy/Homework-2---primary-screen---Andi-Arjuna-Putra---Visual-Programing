@@ -16,15 +16,18 @@ class QuickModeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Text(
             'Quick Modes',
             style: Theme.of(context).textTheme.titleMedium,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 10),
         SizedBox(
           height: 44,
           child: ListView.separated(
@@ -36,7 +39,11 @@ class QuickModeSelector extends StatelessWidget {
               final mode = modes[index];
               final isSelected = mode == activeMode;
               return ChoiceChip(
-                label: Text(mode),
+                label: Text(
+                  mode,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 selected: isSelected,
                 onSelected: (selected) {
                   if (selected) {

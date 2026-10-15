@@ -15,7 +15,7 @@ class CategoryFilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 48,
+      height: 46,
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         scrollDirection: Axis.horizontal,
@@ -24,7 +24,11 @@ class CategoryFilterTabs extends StatelessWidget {
         itemBuilder: (context, index) {
           final category = categories[index];
           return ChoiceChip(
-            label: Text(category),
+            label: Text(
+              category,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
             selected: category == selectedCategory,
             onSelected: (selected) {
               if (selected) {
